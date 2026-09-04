@@ -372,11 +372,218 @@
             animation: spin 0.8s linear infinite;
         }
 
+        .spinner-lg {
+            width: 32px;
+            height: 32px;
+            border: 3px solid var(--border);
+            border-top-color: var(--primary);
+            margin: 0 auto 1rem;
+        }
+
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
 
         .hidden { display: none !important; }
+
+        .scope-note {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .meta-banner {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.6rem 1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-banner .mock-tag {
+            background: #fef3c7;
+            color: #92400e;
+            font-weight: 700;
+            padding: 0.15rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+        }
+
+        .meta-banner .partial-tag {
+            background: #fef2f2;
+            color: #991b1b;
+            font-weight: 700;
+            padding: 0.15rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+        }
+
+        .state-card {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem 1.5rem;
+            color: var(--text-muted);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        .state-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .state-card h3 {
+            color: var(--text-main);
+            margin-bottom: 0.4rem;
+        }
+
+        .score-breakdown {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .tab-bar {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            padding: 0.75rem 0.25rem;
+            margin-right: 1rem;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .tab-btn.active {
+            color: var(--primary-dark);
+            border-bottom-color: var(--primary);
+        }
+
+        .basket-chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .basket-chip-row:empty {
+            display: none;
+        }
+
+        .chip-remove {
+            margin-left: 0.4rem;
+            cursor: pointer;
+            font-weight: 800;
+            opacity: 0.6;
+        }
+
+        .chip-remove:hover {
+            opacity: 1;
+        }
+
+        .basket-section-heading {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin: 1.5rem 0 0.75rem;
+        }
+
+        .basket-section-heading:first-child {
+            margin-top: 0;
+        }
+
+        .basket-section-heading.partial {
+            color: var(--accent-orange);
+        }
+
+        .basket-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .basket-card.incomplete {
+            border-left-color: var(--accent-orange);
+        }
+
+        .basket-total-row {
+            margin-top: 0.75rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .basket-total {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+        }
+
+        .basket-total-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .basket-match-count {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.15rem;
+        }
+
+        .basket-details {
+            margin-top: 0.75rem;
+        }
+
+        .basket-details summary {
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .basket-item-list {
+            list-style: none;
+            margin-top: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .basket-item-list li {
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+            padding-top: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .basket-item-detail {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
 
         @media (max-width: 640px) {
             .header-container { flex-direction: column; align-items: stretch; }
@@ -402,9 +609,15 @@
     </header>
 
     <main>
+        <div class="tab-bar">
+            <button class="tab-btn active" id="tabDealsBtn" onclick="switchTab('deals')" type="button">Deals</button>
+            <button class="tab-btn" id="tabBasketBtn" onclick="switchTab('basket')" type="button">Basket Compare</button>
+        </div>
+
+        <div id="dealsView">
         <section class="hero">
-            <h1>Weekly Local Grocery Radar</h1>
-            <p>Scanning circulars & local inventories to rank the best deals near you.</p>
+            <h1>Local Grocery Price Radar</h1>
+            <p>Live prices and active promotions from nearby Kroger-family stores, for a curated basket of everyday items — not a full inventory scan.</p>
         </section>
 
         <section class="controls-panel">
@@ -432,96 +645,178 @@
             </div>
         </section>
 
+        <p class="scope-note" id="scopeNote">
+            Searching a curated basket of everyday grocery items — not full store inventory.
+        </p>
+
         <div class="status-banner" id="statusBanner">
-            <span id="statusText">Showing ranked deals for ZIP <strong>90210</strong> (3 local stores found)</span>
-            <span id="activeStoreCount" style="font-weight: 600;">Active circulars: Fresh Market, SuperSaver, ValueFoods</span>
+            <span id="statusText">Enter a ZIP code or share your location to get started.</span>
+            <span id="activeStoreCount" style="font-weight: 600;"></span>
         </div>
+
+        <div class="meta-banner hidden" id="metaBanner"></div>
 
         <section class="grid" id="dealsGrid">
             </section>
+
+        <section class="hidden" id="emptyState">
+            <div class="state-card">
+                <div class="state-icon">🔍</div>
+                <h3 id="emptyStateTitle">No results</h3>
+                <p id="emptyStateBody"></p>
+            </div>
+        </section>
+
+        <section class="hidden" id="loadingState">
+            <div class="state-card">
+                <div class="spinner spinner-lg"></div>
+                <p>Checking nearby stores…</p>
+            </div>
+        </section>
+        </div>
+
+        <div id="basketView" class="hidden">
+            <section class="hero">
+                <h1>Basket Compare</h1>
+                <p>Add a few items and see an estimated total per nearby store — built only from prices Kroger's API actually returns, right now.</p>
+            </section>
+
+            <section class="controls-panel">
+                <div class="search-row">
+                    <div class="search-input-wrapper">
+                        <input type="text" id="basketItemInput" placeholder="Add an item (e.g. sourdough bread)..." onkeydown="if(event.key==='Enter'){event.preventDefault(); addBasketItem();}">
+                    </div>
+                    <button class="btn btn-outline" onclick="addBasketItem()" type="button">Add Item</button>
+                </div>
+
+                <div id="basketChips" class="basket-chip-row"></div>
+
+                <div class="filter-row">
+                    <span id="basketCountHint" class="filter-label" style="text-transform: none;">0/6 items (min 3)</span>
+                    <button class="btn" onclick="compareBaskets()" id="compareBtn" disabled>
+                        <span>Compare Stores</span>
+                    </button>
+                </div>
+            </section>
+
+            <p class="scope-note" id="basketScopeNote">
+                Estimated totals use each store's current listed price per item, right now — not a receipt total. No tax, coupons, loyalty pricing, or bag fees. Items we can't clearly match to your search are shown but excluded from the total.
+            </p>
+
+            <div class="status-banner" id="basketStatusBanner">
+                <span id="basketStatusText">Add at least 3 items, then compare stores.</span>
+            </div>
+
+            <div class="meta-banner hidden" id="basketMetaBanner"></div>
+
+            <div id="basketResults"></div>
+
+            <section class="hidden" id="basketEmptyState">
+                <div class="state-card">
+                    <div class="state-icon">🧺</div>
+                    <h3 id="basketEmptyStateTitle">No results</h3>
+                    <p id="basketEmptyStateBody"></p>
+                </div>
+            </section>
+
+            <section class="hidden" id="basketLoadingState">
+                <div class="state-card">
+                    <div class="spinner spinner-lg"></div>
+                    <p>Pricing your basket at nearby stores…</p>
+                </div>
+            </section>
+        </div>
     </main>
 
     <script>
-        // Mock database of regional grocery chains & inventory templates
-        const STORE_DATABASE = [
-            { id: 'fs', name: 'Fresh Select', distance: '0.8 mi', priceMultiplier: 1.1 },
-            { id: 'mb', name: 'Market Basket', distance: '1.4 mi', priceMultiplier: 0.95 },
-            { id: 'vl', name: 'ValueTown', distance: '2.5 mi', priceMultiplier: 0.85 },
-            { id: 'og', name: 'Organic Garden', distance: '3.1 mi', priceMultiplier: 1.25 }
-        ];
-
-        const BASE_ITEMS = [
-            { name: 'Hass Avocados', category: 'Produce', basePrice: 1.99, icon: '🥑', unit: 'each' },
-            { name: 'Boneless Skinless Chicken Breast', category: 'Meat', basePrice: 4.99, icon: '🍗', unit: 'lb' },
-            { name: 'Whole Milk (1 Gal)', category: 'Dairy', basePrice: 3.49, icon: '🥛', unit: 'gal' },
-            { name: 'Large Brown Eggs (12ct)', category: 'Dairy', basePrice: 3.99, icon: '🥚', unit: 'dozen' },
-            { name: 'Sourdough Bread', category: 'Bakery', basePrice: 4.29, icon: '🍞', unit: 'loaf' },
-            { name: 'Honeycrisp Apples', category: 'Produce', basePrice: 2.49, icon: '🍎', unit: 'lb' },
-            { name: 'Atlantic Salmon Fillet', category: 'Seafood', basePrice: 9.99, icon: '🐟', unit: 'lb' },
-            { name: 'Extra Virgin Olive Oil (16oz)', category: 'Pantry', basePrice: 8.99, icon: '🫒', unit: 'bottle' }
-        ];
+        // NOTE ON DATA SOURCES:
+        // - Manual ZIP entry is the primary, always-available path. Geolocation
+        //   ("Detect") and Nominatim (OpenStreetMap) reverse/forward geocoding are
+        //   optional convenience only — a scan never blocks on either failing.
+        // - Store names/addresses and prices/promos come from our own backend
+        //   (/api/deals), which calls Kroger's official Public API for a fixed,
+        //   curated basket of search terms (see ITEMS in api/deals.js) — this is
+        //   NOT a full store inventory or weekly-ad scan. Kroger owns Kroger,
+        //   Ralphs, Fred Meyer, King Soopers, Smith's, QFC, Fry's, Harris Teeter,
+        //   Mariano's, and other banners, so coverage depends on whether one of those
+        //   is near the searched ZIP. Nothing here is scraped or simulated (unless
+        //   USE_MOCK_DATA=true is set for local dev — see api/_mock-data.js).
+        // - The backend needs KROGER_CLIENT_ID / KROGER_CLIENT_SECRET set as env vars
+        //   on your host. See README.md.
 
         let currentDeals = [];
         let currentSort = 'rank';
         let selectedStore = 'ALL';
+        let currentStores = [];
+        let userCoords = null; // { lat, lon, zip }
 
-        // Algorithmic Deal Ranking Score Calculation
-        function calculateRankScore(discountPct, priceRatio, distanceMiles) {
-            // Formula weighs discount heavily, factors in relative price efficiency, penalizes distance
-            const discountWeight = 0.5;
-            const valueWeight = 0.35;
-            const distancePenalty = 0.15;
-            
-            const distNum = parseFloat(distanceMiles);
-            const distScore = Math.max(0, 100 - (distNum * 15));
-            const score = (discountPct * discountWeight) + ((1 - priceRatio) * 100 * valueWeight) + (distScore * distancePenalty);
-            
-            return Math.min(99, Math.max(60, Math.round(score)));
+        // Nominatim (OpenStreetMap) is optional convenience for turning
+        // geolocation coords into a ZIP, or a ZIP into distance-calc coords.
+        // It's never required — manual ZIP entry always works on its own.
+        // We cache results and enforce Nominatim's ~1 req/sec usage policy
+        // client-side so repeated scans of the same spot don't hammer it.
+        const geocodeCache = new Map(); // key -> { lat, lon } or { zip }
+        let lastNominatimCallAt = 0;
+        const NOMINATIM_MIN_INTERVAL_MS = 1100;
+
+        async function throttledNominatimFetch(url) {
+            const wait = NOMINATIM_MIN_INTERVAL_MS - (Date.now() - lastNominatimCallAt);
+            if (wait > 0) await new Promise(r => setTimeout(r, wait));
+            lastNominatimCallAt = Date.now();
+            return fetch(url);
         }
 
-        function generateLocalDeals(zip) {
-            // Deterministic pseudo-random generation based on Zip Code
-            const zipSeed = parseInt(zip) || 90210;
-            const deals = [];
+        // Forward-geocode a ZIP to coordinates. Best-effort: only used for
+        // the distance-ranking calculation, never blocks a scan on failure.
+        async function geocodeZip(zip) {
+            const cacheKey = `zip:${zip}`;
+            if (geocodeCache.has(cacheKey)) return geocodeCache.get(cacheKey);
 
-            STORE_DATABASE.forEach((store, sIdx) => {
-                BASE_ITEMS.forEach((item, iIdx) => {
-                    // Create varying discounts per store
-                    const seed = (zipSeed + sIdx * 17 + iIdx * 31) % 100;
-                    const isDeal = seed > 30; // 70% of items are on sale
+            const url = `https://nominatim.openstreetmap.org/search?postalcode=${encodeURIComponent(zip)}&country=USA&format=json&limit=1`;
+            const res = await throttledNominatimFetch(url);
+            if (!res.ok) throw new Error('Geocoding request failed');
+            const data = await res.json();
+            if (!data.length) throw new Error(`ZIP ${zip} not found`);
+            const coords = { lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon) };
+            geocodeCache.set(cacheKey, coords);
+            return coords;
+        }
 
-                    if (isDeal) {
-                        const discountPct = Math.floor(15 + (seed % 45)); // 15% to 60% off
-                        const originalPrice = Number((item.basePrice * store.priceMultiplier).toFixed(2));
-                        const salePrice = Number((originalPrice * (1 - discountPct / 100)).toFixed(2));
-                        const rankScore = calculateRankScore(discountPct, salePrice / item.basePrice, store.distance);
+        // Reverse-geocode coordinates to a ZIP. Best-effort convenience for
+        // the "Detect" button only — manual ZIP entry is the primary path.
+        async function reverseGeocode(lat, lon) {
+            const cacheKey = `rev:${lat.toFixed(2)},${lon.toFixed(2)}`;
+            if (geocodeCache.has(cacheKey)) return geocodeCache.get(cacheKey);
 
-                        deals.push({
-                            id: `${store.id}-${iIdx}`,
-                            title: item.name,
-                            icon: item.icon,
-                            store: store.name,
-                            distance: store.distance,
-                            price: salePrice,
-                            originalPrice: originalPrice,
-                            discountPct: discountPct,
-                            unit: item.unit,
-                            rankScore: rankScore
-                        });
-                    }
-                });
-            });
+            const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=14&addressdetails=1`;
+            const res = await throttledNominatimFetch(url);
+            if (!res.ok) throw new Error('Reverse geocoding request failed');
+            const data = await res.json();
+            const addr = data.address || {};
+            const result = { zip: addr.postcode || '' };
+            geocodeCache.set(cacheKey, result);
+            return result;
+        }
 
-            return deals;
+        // Fetch real stores + real deals from our backend (which calls Kroger's API)
+        async function fetchDeals(zip, lat, lon) {
+            const params = new URLSearchParams({ zip });
+            if (lat != null) params.set('lat', lat);
+            if (lon != null) params.set('lon', lon);
+
+            const res = await fetch(`/api/deals?${params.toString()}`);
+            const data = await res.json().catch(() => ({}));
+            if (!res.ok) throw new Error(data.error || `Request failed (${res.status})`);
+            return data; // { stores: [...], deals: [...] }
         }
 
         function renderStoreFilters() {
             const container = document.getElementById('storeFilters');
-            const stores = ['ALL', ...STORE_DATABASE.map(s => s.name)];
-            
+            const stores = ['ALL', ...currentStores.map(s => s.name)];
+
             container.innerHTML = stores.map(store => `
                 <div class="chip ${store === selectedStore ? 'active' : ''}" 
-                     onclick="filterByStore('${store}', this)">
+                     onclick="filterByStore('${store.replace(/'/g, "\\'")}', this)">
                     ${store}
                 </div>
             `).join('');
@@ -544,11 +839,16 @@
                 if (currentSort === 'price') return a.price - b.price;
             });
 
+            document.getElementById('emptyState').classList.toggle('hidden', filtered.length !== 0 || currentDeals.length === 0);
+
             if (filtered.length === 0) {
-                grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--text-muted);">
-                    <h3>No matching deals found</h3>
-                    <p>Try adjusting your search or store filter.</p>
-                </div>`;
+                grid.innerHTML = '';
+                if (currentDeals.length > 0) {
+                    // Had deals, but the search/store filter matched none.
+                    document.getElementById('emptyState').classList.remove('hidden');
+                    document.getElementById('emptyStateTitle').textContent = 'No matching deals found';
+                    document.getElementById('emptyStateBody').textContent = 'Try adjusting your search or store filter.';
+                }
                 return;
             }
 
@@ -562,7 +862,7 @@
                     </div>
                     <div class="card-body">
                         <div class="store-info">
-                            <span>📍 ${deal.store}</span>
+                            <span>📍 ${deal.store}${deal.storeAddress ? ' — ' + deal.storeAddress : ''}</span>
                             <span>${deal.distance}</span>
                         </div>
                         <h3 class="card-title">${deal.title}</h3>
@@ -575,49 +875,162 @@
                             <span>Deal Rank Score</span>
                             <strong>${deal.rankScore}/100 🔥</strong>
                         </div>
+                        <div class="score-breakdown">${deal.discountPct}% off (60% of score) · ${deal.distance} away (40% of score)</div>
                     </div>
                 </div>
             `).join('');
         }
 
-        function scanDeals() {
-            const zip = document.getElementById('zipInput').value || '90210';
+        function setStatus(msg, isError) {
+            const banner = document.getElementById('statusBanner');
+            banner.style.background = isError ? '#fef2f2' : '#eff6ff';
+            banner.style.borderColor = isError ? '#fecaca' : '#bfdbfe';
+            banner.style.color = isError ? '#991b1b' : '#1e40af';
+            document.getElementById('statusText').textContent = msg;
+        }
+
+        function renderMetaBanner(meta) {
+            const banner = document.getElementById('metaBanner');
+            if (!meta) {
+                banner.classList.add('hidden');
+                return;
+            }
+            banner.classList.remove('hidden');
+            const tags = [];
+            if (meta.dataSource === 'mock') tags.push('<span class="mock-tag">Mock data</span>');
+            if (meta.partial) tags.push('<span class="partial-tag">Partial results — some lookups failed</span>');
+
+            banner.innerHTML = `
+                <span>${meta.coverageNote || ''}</span>
+                <span style="display:flex; gap:0.5rem; align-items:center;">${tags.join('')}</span>
+            `;
+
+            if (meta.searchedTerms && meta.searchedTerms.length) {
+                document.getElementById('scopeNote').textContent =
+                    `Searching for: ${meta.searchedTerms.join(', ')}. Not full store inventory.`;
+            }
+        }
+
+        function showLoadingState(isLoading) {
+            document.getElementById('loadingState').classList.toggle('hidden', !isLoading);
+            if (isLoading) {
+                document.getElementById('dealsGrid').innerHTML = '';
+                document.getElementById('emptyState').classList.add('hidden');
+            }
+        }
+
+        async function scanDeals() {
+            const zipInput = document.getElementById('zipInput');
+            const zip = zipInput.value.trim() || '90210';
             const btn = document.getElementById('scanBtn');
-            
+
+            if (!/^\d{5}$/.test(zip)) {
+                setStatus('Enter a valid 5-digit ZIP code.', true);
+                return;
+            }
+
             btn.innerHTML = `<span class="spinner"></span> Scanning...`;
             btn.disabled = true;
+            showLoadingState(true);
+            setStatus(`Looking up Kroger-family stores for ZIP ${zip}…`, false);
+            document.getElementById('activeStoreCount').textContent = '';
+            renderMetaBanner(null);
 
-            setTimeout(() => {
-                currentDeals = generateLocalDeals(zip);
+            try {
+                // Reuse coords from geolocation if they match the ZIP currently shown.
+                // Geocoding the ZIP is best-effort (only improves distance ranking) —
+                // if it fails, we still scan using the ZIP alone.
+                let coords = (userCoords && userCoords.zip === zip) ? userCoords : null;
+                if (!coords) {
+                    try {
+                        coords = await geocodeZip(zip);
+                        userCoords = { ...coords, zip };
+                    } catch (geoErr) {
+                        console.warn('ZIP geocoding failed, continuing without distance data:', geoErr.message);
+                        coords = { lat: null, lon: null };
+                    }
+                }
+
+                const { stores, deals, meta } = await fetchDeals(zip, coords.lat, coords.lon);
+                renderMetaBanner(meta);
+
+                if (!stores || stores.length === 0) {
+                    showLoadingState(false);
+                    setStatus(`No Kroger-family stores (Kroger, Ralphs, Fred Meyer, King Soopers, etc.) found near ZIP ${zip}.`, true);
+                    currentStores = [];
+                    currentDeals = [];
+                    renderStoreFilters();
+                    document.getElementById('emptyState').classList.remove('hidden');
+                    document.getElementById('emptyStateTitle').textContent = 'No nearby stores';
+                    document.getElementById('emptyStateBody').textContent = 'Try a nearby ZIP or a larger city — coverage is limited to Kroger-family banners.';
+                    return;
+                }
+
+                currentStores = stores;
+                selectedStore = 'ALL';
+                renderStoreFilters();
+                currentDeals = deals;
+                showLoadingState(false);
                 renderDeals();
-                
-                document.getElementById('statusText').innerHTML = `Showing ranked deals for ZIP <strong>${zip}</strong> (${STORE_DATABASE.length} local stores found)`;
+
+                if (deals.length === 0) {
+                    setStatus(`Found ${stores.length} store(s) near ZIP ${zip}, but none of the tracked items are currently on promo there.`, false);
+                    document.getElementById('emptyState').classList.remove('hidden');
+                    document.getElementById('emptyStateTitle').textContent = 'No active promos right now';
+                    document.getElementById('emptyStateBody').textContent = "That's expected sometimes — it means none of the tracked items have a live promo at these stores today.";
+                } else {
+                    const storeLabel = meta && meta.dataSource === 'mock' ? 'stores (mock)' : 'real Kroger-family stores';
+                    document.getElementById('statusText').innerHTML = `Showing ranked results for ZIP <strong>${zip}</strong> (${stores.length} ${storeLabel})`;
+                    document.getElementById('activeStoreCount').textContent = meta && meta.dataSource === 'mock' ? 'Mock data' : "Live via Kroger's public API";
+                    document.getElementById('statusBanner').style.background = '#eff6ff';
+                    document.getElementById('statusBanner').style.borderColor = '#bfdbfe';
+                    document.getElementById('statusBanner').style.color = '#1e40af';
+                }
+            } catch (err) {
+                console.error(err);
+                showLoadingState(false);
+                setStatus(`Couldn't fetch deal data (${err.message}).`, true);
+                document.getElementById('emptyState').classList.remove('hidden');
+                document.getElementById('emptyStateTitle').textContent = 'Something went wrong';
+                document.getElementById('emptyStateBody').textContent = "The price provider didn't respond correctly. Try again in a moment.";
+            } finally {
                 btn.innerHTML = `<span>Scan Local Deals</span>`;
                 btn.disabled = false;
-            }, 600);
+            }
         }
 
         function getLocation() {
             const btn = document.getElementById('locBtn');
-            if (navigator.geolocation) {
-                btn.innerHTML = `<span class="spinner"></span>`;
-                navigator.geolocation.getCurrentPosition(
-                    (pos) => {
-                        // Mock converting lat/long to a local zip for demonstration
-                        const mockZips = ['90210', '10001', '60601', '30301', '98101'];
-                        const randomZip = mockZips[Math.floor(Math.random() * mockZips.length)];
-                        document.getElementById('zipInput').value = randomZip;
-                        btn.textContent = 'Detect';
-                        scanDeals();
-                    },
-                    () => {
-                        alert('Location access denied. Using fallback ZIP.');
-                        btn.textContent = 'Detect';
-                    }
-                );
-            } else {
-                alert('Geolocation is not supported by your browser.');
+            if (!navigator.geolocation) {
+                setStatus('Geolocation is not supported by your browser — enter a ZIP code instead.', true);
+                return;
             }
+
+            btn.innerHTML = `<span class="spinner"></span>`;
+            navigator.geolocation.getCurrentPosition(
+                async (pos) => {
+                    try {
+                        const { latitude, longitude } = pos.coords;
+                        const rev = await reverseGeocode(latitude, longitude);
+                        if (rev.zip) {
+                            userCoords = { lat: latitude, lon: longitude, zip: rev.zip };
+                            document.getElementById('zipInput').value = rev.zip;
+                            btn.textContent = 'Detect';
+                            await scanDeals();
+                        } else {
+                            throw new Error('No ZIP in response');
+                        }
+                    } catch (e) {
+                        console.warn('Reverse geocoding failed:', e.message);
+                        btn.textContent = 'Detect';
+                        setStatus("Found your location but couldn't resolve it to a ZIP — enter one manually below.", true);
+                    }
+                },
+                () => {
+                    btn.textContent = 'Detect';
+                    setStatus('Location access denied — enter a ZIP code manually instead.', true);
+                }
+            );
         }
 
         function filterDeals() {
@@ -639,8 +1052,230 @@
         }
 
         // Initialize App
+        // ---------------------------------------------------------------
+        // Basket Compare
+        //
+        // Reuses the same ZIP/location bar and geocoding helpers as the
+        // Deals view. Calls POST /api/basket, which returns a per-store
+        // estimated total built only from items its own matching rule is
+        // confident about — everything else is shown, never silently
+        // folded into the total. See api/basket.js for the matching rule.
+        // ---------------------------------------------------------------
+
+        let basketItems = [];
+        // Mirrors the server's conservative default (BASKET_MAX_ITEMS in
+        // api/basket.js) — kept low for the first live deployment until
+        // real Vercel timing justifies raising both together.
+        const BASKET_MAX_ITEMS = 6;
+
+        function switchTab(tab) {
+            document.getElementById('dealsView').classList.toggle('hidden', tab !== 'deals');
+            document.getElementById('basketView').classList.toggle('hidden', tab !== 'basket');
+            document.getElementById('tabDealsBtn').classList.toggle('active', tab === 'deals');
+            document.getElementById('tabBasketBtn').classList.toggle('active', tab === 'basket');
+        }
+
+        function setBasketStatus(msg, isError) {
+            const banner = document.getElementById('basketStatusBanner');
+            banner.style.background = isError ? '#fef2f2' : '#eff6ff';
+            banner.style.borderColor = isError ? '#fecaca' : '#bfdbfe';
+            banner.style.color = isError ? '#991b1b' : '#1e40af';
+            document.getElementById('basketStatusText').textContent = msg;
+        }
+
+        function renderBasketChips() {
+            const container = document.getElementById('basketChips');
+            container.innerHTML = basketItems.map((item, idx) => `
+                <div class="chip">
+                    ${item}<span class="chip-remove" onclick="removeBasketItem(${idx})">✕</span>
+                </div>
+            `).join('');
+            document.getElementById('compareBtn').disabled = basketItems.length < 3;
+            document.getElementById('basketCountHint').textContent = `${basketItems.length}/${BASKET_MAX_ITEMS} items (min 3)`;
+        }
+
+        function addBasketItem() {
+            const input = document.getElementById('basketItemInput');
+            const value = input.value.trim();
+            if (!value) return;
+
+            if (basketItems.length >= BASKET_MAX_ITEMS) {
+                setBasketStatus(`You can add up to ${BASKET_MAX_ITEMS} items for now.`, true);
+                return;
+            }
+            if (basketItems.some(i => i.toLowerCase() === value.toLowerCase())) {
+                setBasketStatus('That item is already in your basket.', true);
+                input.value = '';
+                return;
+            }
+
+            basketItems.push(value);
+            input.value = '';
+            renderBasketChips();
+            setBasketStatus(basketItems.length < 3 ? 'Add at least 3 items, then compare stores.' : `Ready to compare — add up to ${BASKET_MAX_ITEMS} items total.`, false);
+        }
+
+        function removeBasketItem(idx) {
+            basketItems.splice(idx, 1);
+            renderBasketChips();
+        }
+
+        function renderBasketMetaBanner(meta) {
+            const banner = document.getElementById('basketMetaBanner');
+            if (!meta) {
+                banner.classList.add('hidden');
+                return;
+            }
+            banner.classList.remove('hidden');
+            const tags = [];
+            if (meta.dataSource === 'mock') tags.push('<span class="mock-tag">Mock data</span>');
+            if (meta.partial) tags.push('<span class="partial-tag">Partial results — some lookups failed</span>');
+            banner.innerHTML = `
+                <span>${meta.coverageNote || ''}</span>
+                <span style="display:flex; gap:0.5rem; align-items:center;">${tags.join('')}</span>
+            `;
+        }
+
+        function basketStatusIcon(status) {
+            return { matched: '✅', ambiguous: '⚠️', unavailable: '❌', error: '⚠️' }[status] || '❔';
+        }
+
+        function basketItemDetailText(item) {
+            let label;
+            if (item.matchedDescription) {
+                label = item.matchedDescription + (item.size ? ` — ${item.size}` : '');
+            } else if (item.status === 'error') {
+                label = 'Lookup failed — try again';
+            } else {
+                label = 'No matching product found at this store';
+            }
+            if (item.price != null) {
+                label += ` — $${item.price.toFixed(2)}`;
+                if (item.priceType === 'promo') label += ` (promo, reg $${item.regularPrice.toFixed(2)})`;
+            }
+            return label;
+        }
+
+        function renderBasketResults(stores) {
+            const container = document.getElementById('basketResults');
+            document.getElementById('basketEmptyState').classList.add('hidden');
+
+            let html = '';
+            let shown = { complete: false, partial: false };
+
+            stores.forEach(store => {
+                if (store.isComplete && !shown.complete) {
+                    html += `<h3 class="basket-section-heading">Priced every item</h3>`;
+                    shown.complete = true;
+                } else if (!store.isComplete && !shown.partial) {
+                    html += `<h3 class="basket-section-heading partial">Partial matches — fewer items priced</h3>`;
+                    shown.partial = true;
+                }
+
+                const totalLabel = store.basketTotal == null
+                    ? 'No items in your list could be matched here'
+                    : (store.isComplete ? 'Estimated total (every item priced)' : 'Estimated subtotal for matched items only');
+
+                html += `
+                    <div class="card basket-card ${store.isComplete ? '' : 'incomplete'}">
+                        <div class="card-body">
+                            <div class="store-info">
+                                <span>📍 ${store.name}${store.address ? ' — ' + store.address : ''}</span>
+                                <span>${store.distance}</span>
+                            </div>
+                            <div class="basket-total-row">
+                                <span class="basket-total">${store.basketTotal == null ? '—' : '$' + store.basketTotal.toFixed(2)}</span>
+                                <span class="basket-total-label">${totalLabel}</span>
+                            </div>
+                            <div class="basket-match-count">${store.matchedCount} of ${store.requestedCount} items priced</div>
+                            <details class="basket-details">
+                                <summary>See item-by-item match</summary>
+                                <ul class="basket-item-list">
+                                    ${store.items.map(item => `
+                                        <li>
+                                            <span>${basketStatusIcon(item.status)} <strong>${item.query}</strong></span>
+                                            <span class="basket-item-detail">${basketItemDetailText(item)}</span>
+                                        </li>
+                                    `).join('')}
+                                </ul>
+                            </details>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        async function compareBaskets() {
+            const zip = document.getElementById('zipInput').value.trim() || '90210';
+            const btn = document.getElementById('compareBtn');
+
+            if (!/^\d{5}$/.test(zip)) {
+                setBasketStatus('Enter a valid 5-digit ZIP code.', true);
+                return;
+            }
+            if (basketItems.length < 3) {
+                setBasketStatus('Add at least 3 items to compare.', true);
+                return;
+            }
+
+            btn.innerHTML = `<span class="spinner"></span> Comparing...`;
+            btn.disabled = true;
+            document.getElementById('basketLoadingState').classList.remove('hidden');
+            document.getElementById('basketResults').innerHTML = '';
+            document.getElementById('basketEmptyState').classList.add('hidden');
+            renderBasketMetaBanner(null);
+            setBasketStatus(`Comparing basket totals for ZIP ${zip}…`, false);
+
+            try {
+                let coords = (userCoords && userCoords.zip === zip) ? userCoords : null;
+                if (!coords) {
+                    try {
+                        coords = await geocodeZip(zip);
+                        userCoords = { ...coords, zip };
+                    } catch (geoErr) {
+                        console.warn('ZIP geocoding failed, continuing without distance data:', geoErr.message);
+                        coords = { lat: null, lon: null };
+                    }
+                }
+
+                const res = await fetch('/api/basket', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ zip, lat: coords.lat, lon: coords.lon, items: basketItems })
+                });
+                const data = await res.json().catch(() => ({}));
+                if (!res.ok) throw new Error(data.error || `Request failed (${res.status})`);
+
+                document.getElementById('basketLoadingState').classList.add('hidden');
+                renderBasketMetaBanner(data.meta);
+
+                if (!data.stores || data.stores.length === 0) {
+                    setBasketStatus(`No Kroger-family stores found near ZIP ${zip}.`, true);
+                    document.getElementById('basketEmptyState').classList.remove('hidden');
+                    document.getElementById('basketEmptyStateTitle').textContent = 'No nearby stores';
+                    document.getElementById('basketEmptyStateBody').textContent = 'Try a nearby ZIP or a larger city — coverage is limited to Kroger-family banners.';
+                    return;
+                }
+
+                renderBasketResults(data.stores);
+                const completeCount = data.stores.filter(s => s.isComplete).length;
+                setBasketStatus(`Compared ${data.stores.length} store(s) near ZIP ${zip} — ${completeCount} of them priced every item.`, false);
+            } catch (err) {
+                console.error(err);
+                document.getElementById('basketLoadingState').classList.add('hidden');
+                setBasketStatus(`Couldn't compare baskets (${err.message}).`, true);
+                document.getElementById('basketEmptyState').classList.remove('hidden');
+                document.getElementById('basketEmptyStateTitle').textContent = 'Something went wrong';
+                document.getElementById('basketEmptyStateBody').textContent = "The price provider didn't respond correctly. Try again in a moment.";
+            } finally {
+                btn.innerHTML = `<span>Compare Stores</span>`;
+                btn.disabled = false;
+            }
+        }
+
         window.onload = () => {
-            renderStoreFilters();
             scanDeals();
         };
     </script>

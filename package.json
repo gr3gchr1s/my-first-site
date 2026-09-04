@@ -1,0 +1,9 @@
+{
+  "name": "pinch",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local grocery deal radar — real Kroger-family stores and prices via Kroger's public API.",
+  "engines": {
+    "node": ">=18"
+  }
+}
