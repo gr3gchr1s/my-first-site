@@ -1,155 +1,648 @@
 <!DOCTYPE html>
-<!--
-  ================================================================
-  READ THIS BEFORE YOU PASTE ANYTHING
-
-  When Gemini gives you a page, you do NOT paste it into a part of
-  this file. You replace the entire file.
-
-  Click into the editor, press Ctrl+A (Cmd+A on Mac), press Delete,
-  then paste. Everything here is meant to be thrown away.
-
-  Do that only AFTER your live link works. Get the link first.
-  ================================================================
--->
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>My first site</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Unbounded:wght@600;800&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --navy: #0d1d30;
-    --card: #142a44;
-    --line: #27466a;
-    --aqua: #6de1d7;
-    --text: #ffffff;
-    --muted: #94a9bf;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--navy);
-    color: var(--text);
-    font-family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
-    line-height: 1.6;
-    display: flex;
-    justify-content: center;
-    padding: 6vh 20px;
-  }
-  main { width: 100%; max-width: 640px; }
-  .badge {
-    display: inline-block;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--aqua);
-    margin-bottom: 18px;
-  }
-  h1 {
-    font-family: "Unbounded", "Manrope", sans-serif;
-    font-weight: 800;
-    font-size: clamp(38px, 9vw, 68px);
-    letter-spacing: -0.05em;
-    line-height: 1.02;
-    margin: 0 0 8px;
-  }
-  .name {
-    font-family: "Unbounded", "Manrope", sans-serif;
-    font-weight: 600;
-    font-size: clamp(18px, 4vw, 24px);
-    letter-spacing: -0.04em;
-    color: var(--aqua);
-    margin: 0 0 24px;
-  }
-  p.lead { font-size: 18px; color: var(--muted); margin: 0 0 34px; }
-  .card {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 26px 28px;
-    margin-bottom: 18px;
-  }
-  .card h2 {
-    font-family: "Unbounded", "Manrope", sans-serif;
-    font-weight: 600;
-    font-size: 15px;
-    letter-spacing: -0.03em;
-    text-transform: uppercase;
-    color: var(--aqua);
-    margin: 0 0 16px;
-  }
-  ol { margin: 0; padding-left: 20px; }
-  li { margin-bottom: 12px; color: var(--muted); }
-  li:last-child { margin-bottom: 0; }
-  li b { color: var(--text); font-weight: 700; }
-  code {
-    font-family: ui-monospace, "SF Mono", Consolas, monospace;
-    font-size: 0.92em;
-    background: #0a1727;
-    border: 1px solid var(--line);
-    border-radius: 5px;
-    padding: 1px 6px;
-    color: var(--aqua);
-  }
-  a { color: var(--aqua); }
-  footer {
-    margin-top: 30px;
-    font-size: 14px;
-    color: #6e839a;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinch - Local Grocery Deal Radar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --surface: #ffffff;
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --primary-light: #ecfdf5;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --accent-red: #ef4444;
+            --accent-orange: #f97316;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.5;
+            padding-bottom: 60px;
+        }
+
+        header {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            background: var(--primary);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: grid;
+            place-items: center;
+            font-size: 1.2rem;
+        }
+
+        .location-bar {
+            display: flex;
+            align-items: center;
+            background: var(--bg-color);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 0.25rem 0.5rem 0.25rem 1rem;
+            gap: 0.5rem;
+        }
+
+        .location-bar input {
+            border: none;
+            background: transparent;
+            font-size: 0.9rem;
+            font-weight: 600;
+            width: 90px;
+            outline: none;
+            color: var(--text-main);
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            background: var(--bg-color);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .controls-panel {
+            background: var(--surface);
+            padding: 1.25rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .search-row {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .search-input-wrapper {
+            position: relative;
+            flex: 1;
+        }
+
+        .search-input-wrapper input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            outline: none;
+            font-size: 1rem;
+        }
+
+        .search-input-wrapper::before {
+            content: "🔍";
+            position: absolute;
+            left: 0.8rem;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.5;
+        }
+
+        .filter-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            border-top: 1px solid var(--border);
+            padding-top: 1rem;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-right: 0.25rem;
+        }
+
+        .chip {
+            background: var(--bg-color);
+            border: 1px solid var(--border);
+            padding: 0.35rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.2s ease;
+        }
+
+        .chip.active {
+            background: var(--primary-light);
+            border-color: var(--primary);
+            color: var(--primary-dark);
+        }
+
+        .status-banner {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            color: #1e40af;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--accent-red);
+            color: white;
+            font-weight: 800;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            z-index: 2;
+        }
+
+        .card-badge.value {
+            background: var(--accent-orange);
+        }
+
+        .card-image-placeholder {
+            height: 140px;
+            background: #f1f5f9;
+            display: grid;
+            place-items: center;
+            font-size: 3rem;
+            user-select: none;
+        }
+
+        .card-body {
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .store-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .pricing {
+            margin-top: auto;
+            padding-top: 1rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .price-current {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+        }
+
+        .price-original {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+
+        .price-unit {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .rank-score {
+            margin-top: 0.75rem;
+            font-size: 0.75rem;
+            background: var(--bg-color);
+            padding: 0.4rem 0.6rem;
+            border-radius: 6px;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .rank-score strong {
+            color: var(--text-main);
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .hidden { display: none !important; }
+
+        @media (max-width: 640px) {
+            .header-container { flex-direction: column; align-items: stretch; }
+            .search-row { flex-direction: column; }
+            .filter-row { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
 </head>
 <body>
-<main>
 
-  <span class="badge">Cal Poly Vibe Coding &middot; Session 01</span>
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">🏷️</div>
+                Pinch
+            </a>
+            <div class="location-bar">
+                <span>📍</span>
+                <input type="text" id="zipInput" value="90210" maxlength="5" placeholder="ZIP Code">
+                <button class="btn" id="locBtn" onclick="getLocation()">Detect</button>
+            </div>
+        </div>
+    </header>
 
-  <h1>It&rsquo;s live.</h1>
+    <main>
+        <section class="hero">
+            <h1>Weekly Local Grocery Radar</h1>
+            <p>Scanning circulars & local inventories to rank the best deals near you.</p>
+        </section>
 
-  <!-- Step 5: change the name below to yours, then commit. -->
-  <p class="name">Built by Gregory Christenson </p>
+        <section class="controls-panel">
+            <div class="search-row">
+                <div class="search-input-wrapper">
+                    <input type="text" id="searchInput" placeholder="Search items (e.g. Avocado, Milk, Chicken)..." onkeyup="filterDeals()">
+                </div>
+                <button class="btn" onclick="scanDeals()" id="scanBtn">
+                    <span>Scan Local Deals</span>
+                </button>
+            </div>
+            
+            <div class="filter-row">
+                <div class="filter-group">
+                    <span class="filter-label">Sort By:</span>
+                    <div class="chip active" onclick="setSort('rank', this)">Best Rank 🔥</div>
+                    <div class="chip" onclick="setSort('discount', this)">Highest % Off</div>
+                    <div class="chip" onclick="setSort('price', this)">Lowest Price</div>
+                </div>
+                <div class="filter-group">
+                    <span class="filter-label">Stores:</span>
+                    <div id="storeFilters" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        </div>
+                </div>
+            </div>
+        </section>
 
-  <p class="lead">
-    This page is on the internet. Anyone you send this link to can open it,
-    on any device, right now. You made that happen in about five minutes.
-  </p>
+        <div class="status-banner" id="statusBanner">
+            <span id="statusText">Showing ranked deals for ZIP <strong>90210</strong> (3 local stores found)</span>
+            <span id="activeStoreCount" style="font-weight: 600;">Active circulars: Fresh Market, SuperSaver, ValueFoods</span>
+        </div>
 
-  <div class="card">
-    <h2>Three things, in this order</h2>
-    <ol>
-      <li><b>Put your name on it.</b> Edit <code>index.html</code>, change
-        YOUR NAME HERE above, commit, refresh this page.</li>
-      <li><b>Submit this link.</b> Go to
-        <a href="https://www.calpolyvibecoding.com/">calpolyvibecoding.com</a>,
-        make an account, and paste this URL in. That is how you get counted,
-        and how Claude seats get assigned.</li>
-      <li><b>Then build.</b> Open Gemini, get a page, and replace this entire
-        file with it.</li>
-    </ol>
-  </div>
+        <section class="grid" id="dealsGrid">
+            </section>
+    </main>
 
-  <div class="card">
-    <h2>How to replace this page</h2>
-    <ol>
-      <li>Copy what Gemini gives you with the <b>copy button</b> on the code
-        block. Do not click and drag.</li>
-      <li>Open <code>index.html</code> here and click the pencil icon.</li>
-      <li><b>Ctrl+A</b> (<b>Cmd+A</b> on Mac), then <b>Delete</b>. All of it.
-        Yes, really.</li>
-      <li>Paste, commit, refresh.</li>
-    </ol>
-  </div>
+    <script>
+        // Mock database of regional grocery chains & inventory templates
+        const STORE_DATABASE = [
+            { id: 'fs', name: 'Fresh Select', distance: '0.8 mi', priceMultiplier: 1.1 },
+            { id: 'mb', name: 'Market Basket', distance: '1.4 mi', priceMultiplier: 0.95 },
+            { id: 'vl', name: 'ValueTown', distance: '2.5 mi', priceMultiplier: 0.85 },
+            { id: 'og', name: 'Organic Garden', distance: '3.1 mi', priceMultiplier: 1.25 }
+        ];
 
-  <footer>
-    Nothing on this page is precious. It exists so the link has something to
-    show before you have something of your own.
-  </footer>
+        const BASE_ITEMS = [
+            { name: 'Hass Avocados', category: 'Produce', basePrice: 1.99, icon: '🥑', unit: 'each' },
+            { name: 'Boneless Skinless Chicken Breast', category: 'Meat', basePrice: 4.99, icon: '🍗', unit: 'lb' },
+            { name: 'Whole Milk (1 Gal)', category: 'Dairy', basePrice: 3.49, icon: '🥛', unit: 'gal' },
+            { name: 'Large Brown Eggs (12ct)', category: 'Dairy', basePrice: 3.99, icon: '🥚', unit: 'dozen' },
+            { name: 'Sourdough Bread', category: 'Bakery', basePrice: 4.29, icon: '🍞', unit: 'loaf' },
+            { name: 'Honeycrisp Apples', category: 'Produce', basePrice: 2.49, icon: '🍎', unit: 'lb' },
+            { name: 'Atlantic Salmon Fillet', category: 'Seafood', basePrice: 9.99, icon: '🐟', unit: 'lb' },
+            { name: 'Extra Virgin Olive Oil (16oz)', category: 'Pantry', basePrice: 8.99, icon: '🫒', unit: 'bottle' }
+        ];
 
-</main>
+        let currentDeals = [];
+        let currentSort = 'rank';
+        let selectedStore = 'ALL';
+
+        // Algorithmic Deal Ranking Score Calculation
+        function calculateRankScore(discountPct, priceRatio, distanceMiles) {
+            // Formula weighs discount heavily, factors in relative price efficiency, penalizes distance
+            const discountWeight = 0.5;
+            const valueWeight = 0.35;
+            const distancePenalty = 0.15;
+            
+            const distNum = parseFloat(distanceMiles);
+            const distScore = Math.max(0, 100 - (distNum * 15));
+            const score = (discountPct * discountWeight) + ((1 - priceRatio) * 100 * valueWeight) + (distScore * distancePenalty);
+            
+            return Math.min(99, Math.max(60, Math.round(score)));
+        }
+
+        function generateLocalDeals(zip) {
+            // Deterministic pseudo-random generation based on Zip Code
+            const zipSeed = parseInt(zip) || 90210;
+            const deals = [];
+
+            STORE_DATABASE.forEach((store, sIdx) => {
+                BASE_ITEMS.forEach((item, iIdx) => {
+                    // Create varying discounts per store
+                    const seed = (zipSeed + sIdx * 17 + iIdx * 31) % 100;
+                    const isDeal = seed > 30; // 70% of items are on sale
+
+                    if (isDeal) {
+                        const discountPct = Math.floor(15 + (seed % 45)); // 15% to 60% off
+                        const originalPrice = Number((item.basePrice * store.priceMultiplier).toFixed(2));
+                        const salePrice = Number((originalPrice * (1 - discountPct / 100)).toFixed(2));
+                        const rankScore = calculateRankScore(discountPct, salePrice / item.basePrice, store.distance);
+
+                        deals.push({
+                            id: `${store.id}-${iIdx}`,
+                            title: item.name,
+                            icon: item.icon,
+                            store: store.name,
+                            distance: store.distance,
+                            price: salePrice,
+                            originalPrice: originalPrice,
+                            discountPct: discountPct,
+                            unit: item.unit,
+                            rankScore: rankScore
+                        });
+                    }
+                });
+            });
+
+            return deals;
+        }
+
+        function renderStoreFilters() {
+            const container = document.getElementById('storeFilters');
+            const stores = ['ALL', ...STORE_DATABASE.map(s => s.name)];
+            
+            container.innerHTML = stores.map(store => `
+                <div class="chip ${store === selectedStore ? 'active' : ''}" 
+                     onclick="filterByStore('${store}', this)">
+                    ${store}
+                </div>
+            `).join('');
+        }
+
+        function renderDeals() {
+            const grid = document.getElementById('dealsGrid');
+            const query = document.getElementById('searchInput').value.toLowerCase();
+
+            let filtered = currentDeals.filter(deal => {
+                const matchesSearch = deal.title.toLowerCase().includes(query) || deal.store.toLowerCase().includes(query);
+                const matchesStore = selectedStore === 'ALL' || deal.store === selectedStore;
+                return matchesSearch && matchesStore;
+            });
+
+            // Sorting Logic
+            filtered.sort((a, b) => {
+                if (currentSort === 'rank') return b.rankScore - a.rankScore;
+                if (currentSort === 'discount') return b.discountPct - a.discountPct;
+                if (currentSort === 'price') return a.price - b.price;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--text-muted);">
+                    <h3>No matching deals found</h3>
+                    <p>Try adjusting your search or store filter.</p>
+                </div>`;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(deal => `
+                <div class="card">
+                    <div class="card-badge ${deal.discountPct > 40 ? '' : 'value'}">
+                        ${deal.discountPct}% OFF
+                    </div>
+                    <div class="card-image-placeholder">
+                        ${deal.icon}
+                    </div>
+                    <div class="card-body">
+                        <div class="store-info">
+                            <span>📍 ${deal.store}</span>
+                            <span>${deal.distance}</span>
+                        </div>
+                        <h3 class="card-title">${deal.title}</h3>
+                        <div class="pricing">
+                            <span class="price-current">$${deal.price.toFixed(2)}</span>
+                            <span class="price-original">$${deal.originalPrice.toFixed(2)}</span>
+                            <span class="price-unit">/ ${deal.unit}</span>
+                        </div>
+                        <div class="rank-score">
+                            <span>Deal Rank Score</span>
+                            <strong>${deal.rankScore}/100 🔥</strong>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function scanDeals() {
+            const zip = document.getElementById('zipInput').value || '90210';
+            const btn = document.getElementById('scanBtn');
+            
+            btn.innerHTML = `<span class="spinner"></span> Scanning...`;
+            btn.disabled = true;
+
+            setTimeout(() => {
+                currentDeals = generateLocalDeals(zip);
+                renderDeals();
+                
+                document.getElementById('statusText').innerHTML = `Showing ranked deals for ZIP <strong>${zip}</strong> (${STORE_DATABASE.length} local stores found)`;
+                btn.innerHTML = `<span>Scan Local Deals</span>`;
+                btn.disabled = false;
+            }, 600);
+        }
+
+        function getLocation() {
+            const btn = document.getElementById('locBtn');
+            if (navigator.geolocation) {
+                btn.innerHTML = `<span class="spinner"></span>`;
+                navigator.geolocation.getCurrentPosition(
+                    (pos) => {
+                        // Mock converting lat/long to a local zip for demonstration
+                        const mockZips = ['90210', '10001', '60601', '30301', '98101'];
+                        const randomZip = mockZips[Math.floor(Math.random() * mockZips.length)];
+                        document.getElementById('zipInput').value = randomZip;
+                        btn.textContent = 'Detect';
+                        scanDeals();
+                    },
+                    () => {
+                        alert('Location access denied. Using fallback ZIP.');
+                        btn.textContent = 'Detect';
+                    }
+                );
+            } else {
+                alert('Geolocation is not supported by your browser.');
+            }
+        }
+
+        function filterDeals() {
+            renderDeals();
+        }
+
+        function setSort(type, el) {
+            currentSort = type;
+            document.querySelectorAll('.filter-group:first-child .chip').forEach(c => c.classList.remove('active'));
+            el.classList.add('active');
+            renderDeals();
+        }
+
+        function filterByStore(store, el) {
+            selectedStore = store;
+            document.querySelectorAll('#storeFilters .chip').forEach(c => c.classList.remove('active'));
+            el.classList.add('active');
+            renderDeals();
+        }
+
+        // Initialize App
+        window.onload = () => {
+            renderStoreFilters();
+            scanDeals();
+        };
+    </script>
 </body>
 </html>
